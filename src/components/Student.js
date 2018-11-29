@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Student = () => {
+const Student = (props) => {
 
   return (
     <tr>
-      <td>"...your code here"</td>
+      // <td>{props.studentObj.name}</td>
       <td>"...your code here"</td>
       <td>"...your code here"</td>
       <td>
