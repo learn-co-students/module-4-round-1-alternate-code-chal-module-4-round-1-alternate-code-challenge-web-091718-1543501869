@@ -11,19 +11,35 @@ class CourseContainer extends Component {
     courses: []
   }
 
+  handleChange = (courseId) => {
+    let selectedCourse = this.props.courseData.find((course) => {
+      return course.id === parseInt(courseId);
+    })
+    this.setState({ currentCourse: selectedCourse })
+
+    if (this.state.currentCourse.id) {
+      fetch(`https://bayside-high.herokuapp.com/api/v1/users/145/courses/${this.state.currentCourse.id}`)
+        .then(res => res.json())
+        .then(course => this.setState({ students: course.students }))
+    }
+  }
+
+  editHandler = (studentObj) => {
+    this.setState({ currentStudent: studentObj })
+  }
+
   render() {
     return (
       <div className="ui grid container">
         <div className="ui center aligned header sixteen wide column">
-          {/* Course Title Here */}
-          Course Title
+          {this.state.currentCourse.name}
         </div>
 
-        <CourseSelector />
+        <CourseSelector courseData={this.props.courseData} handleChange={this.handleChange} />
 
-        <EditStudent />
+        <EditStudent currentStudent={this.state.currentStudent}/>
 
-        <StudentsList />
+        <StudentsList students={this.state.students} editHandler={this.editHandler}/>
       </div>
     )
   }
