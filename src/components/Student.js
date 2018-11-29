@@ -1,14 +1,14 @@
 import React from 'react'
 
-const Student = () => {
+const Student = ({student, handleEditClick}) => {
 
   return (
     <tr>
-      <td>"...your code here"</td>
-      <td>"...your code here"</td>
-      <td>"...your code here"</td>
+      <td>{student.name}</td>
+      <td>{student.class_year}</td>
+      <td>{student.percentage}</td>
       <td>
-        <button className="ui button left">
+        <button onClick={() => handleEditClick(student)} className="ui button left">
           Edit
         </button>
       </td>
