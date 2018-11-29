@@ -1,7 +1,16 @@
 import React from "react";
 import Student from "./Student";
 
-const StudentsList = () => {
+const StudentsList = (props) => {
+  let createStudent = () => {
+    return props.students.map(studentObj=> {
+      return <student key={studentObj.id} studentObj={studentObj}/>
+    })
+  }
+
+
+
+
   return (
     <table className="ui celled striped padded table">
       <tbody>
@@ -19,8 +28,8 @@ const StudentsList = () => {
             <h3 className="ui center aligned header">Edit</h3>
           </th>
         </tr>
+        {createStudent()}
 
-        {/* Your code here */}
       </tbody>
     </table>
   );
